@@ -5,6 +5,7 @@ import sys
 
 
 def keyCreate(password):
+    #Создание пары ключей 
     key = RSA.generate(2048)
     private_key = key.exportKey(passphrase=password, pkcs=8)
     file_out = open("private.pem", "wb")
@@ -16,18 +17,18 @@ def keyCreate(password):
 
 
 def cryptoFile(file, password):
+    #Шифруем выбранный файл
     with open('text_encrypted.txt', 'wb') as out_file:
         recipient_key = RSA.import_key(
             open('private.pem').read(),
             passphrase=password
         )
         session_key = get_random_bytes(16)
-
         cipher_rsa = PKCS1_OAEP.new(recipient_key)
         out_file.write(cipher_rsa.encrypt(session_key))
 
         cipher_aes = AES.new(session_key, AES.MODE_EAX)
-        # data = b'blah blah blah Python blah blah'
+        #Записываем данные в файл
         with open(file, 'rb') as data:
             data = data.read()
         ciphertext, tag = cipher_aes.encrypt_and_digest(data)
@@ -38,6 +39,7 @@ def cryptoFile(file, password):
 
 
 def decryptoFile(file, password):
+    #Расшифровываем файл
     with open('text_encrypted.txt', 'rb') as out_file:
         recipient_key = RSA.import_key(
             open('private.pem').read(),
@@ -52,6 +54,7 @@ def decryptoFile(file, password):
 
         cipher_aes = AES.new(session_key, AES.MODE_EAX, nonce)
         data = cipher_aes.decrypt_and_verify(ciphertext, tag)
+        #Записываем расшифрованные данные в новый файл
         with open('text_decrypted.txt', 'wb') as out_file:
             out_file.write(data)
 
@@ -59,7 +62,10 @@ if __name__ == "__main__":
     # keyCreate('qwerty123@')
     # cryptoFile('text.txt', 'qwerty123@')
     # decryptoFile('text_encrypted.txt', 'qwerty123@')
+
+    # Проверяем все ли аргументы есть
     if len(sys.argv) == 4 or sys.argv[-1] == 'keycreate' and len(sys.argv) == 3:
+        # Проверка на аргументы для создание пары ключей
         if len(sys.argv) == 3:
             name, password, action = sys.argv
         else:
@@ -71,6 +77,8 @@ if __name__ == "__main__":
                 decryptoFile(str(filename), str(password))
             elif action == 'keycreate':
                 keyCreate(str(password))
+        # В большенстве случаем именно так вываливается ошибка если пароль неверный
+        # Конечно можно сделать более детальную проверку, если надо сделаю
         except ValueError:
             print('Не верный пароль')
         

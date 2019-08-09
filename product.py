@@ -11,6 +11,9 @@ def changeString(number, text):
         text_change = f'{number} {text}{prifex}'
         return text_change
     elif number > 19:
+        # Если полей больше 19, то преобразуем в строку, берем срез последних 2 елементов
+        # И по ним снова запускаем функцию
+        # Значение может быть любое словоформа образуется на основании последних 2 елементов
         first_num = int(str(number)[:-1])
         secend_num = int(str(number)[-1])
         text_change = f'{str(first_num)+str(changeString(secend_num, text))}'

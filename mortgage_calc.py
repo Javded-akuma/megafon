@@ -1,4 +1,4 @@
-mortgage = 1000000
+mortgage = 1000000 
 rate = 10
 rate_month = rate/100/12
 years = 5
