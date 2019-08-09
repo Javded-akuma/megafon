@@ -1,0 +1,140 @@
+@import 'smart-grid';
+@import 'font';
+@border-color: #333333;
+@color-button: #ff8600;
+@megafon_green: #4cb955;
+@megafon_fiolet: #721982;
+.reset();
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+// HEADER
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid @border-color;
+    background: @border-color;
+    aside{
+        display: flex;
+        max-width: 1200px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        
+        ul, ul.menu{
+            display: flex;
+            // max-width: 100%;
+            // width: 100%;
+            li{
+                
+                a{
+                    position: relative;
+                    display: block;
+                    padding: 5px;
+                    margin: 5px;
+                    text-decoration: none;
+                    color: #fff;
+                }
+                a:hover{
+                    color: @megafon_green;
+                }
+            } 
+        }
+        ul.menu{
+            flex-grow: 1;
+        }
+        ul.add{
+            margin-right: 50px;
+            li{
+                background: @megafon_green;
+                margin: 0px;
+
+            }
+            li:hover{
+                background: @megafon_fiolet;
+                a{
+                    color: #fff
+                }
+            }
+        }
+        ul.add > :first-child{
+            background: @megafon_fiolet;
+            margin: 0px;
+        }
+        ul.add > :first-child:hover{
+            background: @megafon_green;
+            a{
+                color: #fff
+            }
+        }
+        ul.add > :first-child:hover + li{
+            background: @megafon_fiolet;
+        }
+        ul.add > li:hover + li{
+            background: @megafon_green;
+        }
+        ul.logo > :first-child{
+                background: @megafon_fiolet;
+        }
+        .crcl{
+            width: 30px;
+            height: 30px;
+            border-radius: 15px;
+            background: @megafon_green;
+            margin: 5px;
+        }
+
+    }
+}
+// Action Panel
+.action_panel{
+    top: 40px;
+    height: 50px;
+    width: 700px;
+    background: @megafon_green;
+    border: 1px solid @megafon_fiolet;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin: 0 auto;
+    position: absolute;
+    form{
+        padding: 10px;
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        input{
+            width: 80%;
+            border: none;
+            padding: 5px;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        label{
+            color: #fff;
+            margin-right: 10px;
+        }
+    }
+}
+// CONTENT
+.content{
+    position: relative;
+    padding: 10px;
+    width: 1200px;
+    top: 60px;
+    border: 1px solid @border-color;
+    h1{
+        max-width: 200px;
+        margin: 0 auto;
+        text-align: center;
+        text-transform: uppercase;
+        padding: 10px;
+        border-bottom: 2px solid @megafon_fiolet;
+    }
+}

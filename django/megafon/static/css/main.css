@@ -1,0 +1,287 @@
+@font-face {
+  font-family: Roboto-Light;
+  src: url(../libs/font/Roboto-Light.ttf);
+  src: url(/static/libs/font/Roboto-Light.ttf);
+}
+
+@font-face {
+  font-family: Roboto-Medium;
+  src: url(/static/libs/font/Roboto-Medium.ttf);
+}
+
+@font-face {
+  font-family: Roboto-Regular;
+  src: url(/static/libs/font/Roboto-Regular.ttf);
+}
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+input,
+textarea,
+p,
+blockquote,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+fieldset,
+img,
+abbr {
+  border: 0;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+  font-style: normal;
+  font-weight: normal;
+}
+
+ul li {
+  list-style: none;
+}
+
+caption,
+th {
+  text-align: left;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+sup {
+  vertical-align: text-top;
+}
+
+sub {
+  vertical-align: text-bottom;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+legend {
+  color: #000;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+main {
+  display: block;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 100%;
+}
+
+.header {
+  width: 100%;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  border-bottom: 1px solid #333333;
+  background: #333333;
+}
+
+.header aside {
+  max-width: 1200px;
+  width: 100%;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+
+.header aside ul,
+.header aside ul.menu {
+  display: -webkit-box;
+  display: flex;
+}
+
+.header aside ul li a,
+.header aside ul.menu li a {
+  position: relative;
+  display: block;
+  padding: 5px;
+  margin: 5px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.header aside ul li a:hover,
+.header aside ul.menu li a:hover {
+  color: #4cb955;
+}
+
+.header aside ul.menu {
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+}
+
+.header aside ul.add {
+  margin-right: 50px;
+}
+
+.header aside ul.add li {
+  background: #4cb955;
+  margin: 0px;
+}
+
+.header aside ul.add li:hover {
+  background: #721982;
+}
+
+.header aside ul.add li:hover a {
+  color: #fff;
+}
+
+.header aside ul.add > :first-child {
+  background: #721982;
+  margin: 0px;
+}
+
+.header aside ul.add > :first-child:hover {
+  background: #4cb955;
+}
+
+.header aside ul.add > :first-child:hover a {
+  color: #fff;
+}
+
+.header aside ul.add > :first-child:hover + li {
+  background: #721982;
+}
+
+.header aside ul.add > li:hover + li {
+  background: #4cb955;
+}
+
+.header aside ul.logo > :first-child {
+  background: #721982;
+}
+
+.header aside .crcl {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background: #4cb955;
+  margin: 5px;
+}
+
+.action_panel {
+  top: 40px;
+  height: 50px;
+  width: 700px;
+  background: #4cb955;
+  border: 1px solid #721982;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin: 0 auto;
+  position: absolute;
+}
+
+.action_panel form {
+  padding: 10px;
+  width: 90%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.action_panel form input {
+  width: 80%;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.action_panel form label {
+  color: #fff;
+  margin-right: 10px;
+}
+
+.content {
+  position: relative;
+  padding: 10px;
+  width: 1200px;
+  top: 60px;
+  border: 1px solid #333333;
+}
+
+.content h1 {
+  max-width: 200px;
+  margin: 0 auto;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 10px;
+  border-bottom: 2px solid #721982;
+}

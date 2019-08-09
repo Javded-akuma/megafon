@@ -1,0 +1,14 @@
+*.swp
+.vscode/
+__pycache__/
+*.pyc
+*.csv
+node_modules/
+crm_argon/settings.py
+nginx_crm_argon.conf
+*.ini
+vassals/
+wsgi_django.py
+wsgi_websocket.py
+XDG_CACHE_HOME/
+venv/
