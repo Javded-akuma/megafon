@@ -1,5 +1,9 @@
 <div class="item-add">
     <a href="#" class="close">X</a>
+    <form action="/books/del/{{pk}}" method="post" id="del_book" >
+        {% csrf_token %}
+        
+    </form>
     <form action="
     {% if suburl == 'add' %}
         /books/add/
@@ -10,6 +14,12 @@
      {% csrf_token %}
         <h3>Новая книга</h3>
         {{form.as_p}}
-        <button type="submit" for="add_book">отправить</button>
+        <div class="btn">
+            <button type="submit" >отправить</button>  
+            {% if suburl == "edit" %}
+            <button type="submit" form="del_book" style="background: red">Удалить</button>
+            {% endif %} 
+        </div>         
     </form>
+
 </div>
