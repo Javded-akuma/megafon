@@ -9,8 +9,14 @@ from .utils import ListsItem
 
 
 class MainView(View):
-    def get(self, request):
-        return render(request, 'index.html')
+    def get(self, request, url='', suburl='', pk=''):
+        books = Books.objects.all()
+        author = Author.objects.all()
+        content = {
+            'books' : books,
+            'author' : author
+        }
+        return render(self.request, 'index.html', content)
 
 class BookView(ListsItem):
     # Наследуем класс ListsItem для книг

@@ -2,22 +2,17 @@
 {% block title %}
 <h1 class="title">Авторы</h1>
 {% endblock title %}
+{% block search %}
+<div class="action_panel">
+    <form action="" method="get">
+        <label for="search">Поиск</label>
+        <input type="search" name="search" id="authors" onkeyup="window.search(this.value, this.id);" 
+        placeholder="Введите имя или фамилию автора">
+    </form>
+</div>
+{% endblock search %}
 {% block content %}
-<div class="authors">
-    <ul>
-        {% for item in items %}
-        <li class="author">
-            <a href="/authors/edit/{{item.pk}}" data-action='getForm'>
-                <div class="author-img" style='background-image: url("/{{item.image}}")'></div>
-                <div class="t-author">{{item}}
-
-                </div>
-                <div class="description">
-                    {{item.description}}
-                </div>
-            </a>
-        </li>
-        {% endfor %}
-    </ul>
+<div id="ajax_result">
+    {% include 'authors_ajax.html' %}
 </div>
 {% endblock content %}

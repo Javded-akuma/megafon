@@ -6,6 +6,7 @@ from django.db.models import Q
 from .models import Author, Books
 from .forms import AuthorForm, BookForm
 
+
 class ListsItem(View):
     template_name = None
     model = None
@@ -16,7 +17,8 @@ class ListsItem(View):
     def add(self, *args, instance=None, **kwargs):
         # Добавление элемента
         if self.request.method == 'POST':
-            form = self.form(self.request.POST,  self.request.FILES, instance=instance)
+            form = self.form(self.request.POST,
+                             self.request.FILES, instance=instance)
             if form.is_valid():
                 form.save()
                 return redirect('/' + kwargs['url'] + '/')
@@ -25,18 +27,18 @@ class ListsItem(View):
         else:
             form = self.form()
             content = {
-                'form' : form,
-                'url' : kwargs['url'],
-                'suburl' : kwargs['suburl']
+                'form': form,
+                'url': kwargs['url'],
+                'suburl': kwargs['suburl']
             }
             return render(self.request, self.template_form, content)
-
 
     def edit(self, *args, **kwargs):
         # Редактирование элемента при POST запросе
         instance = self.model.objects.get(pk=kwargs['pk'])
         if self.request.method == 'POST':
-            form = self.form(self.request.POST, self.request.FILES, instance=instance)
+            form = self.form(self.request.POST,
+                             self.request.FILES, instance=instance)
             if form.is_valid():
                 form.save()
                 return redirect('/' + kwargs['url'] + '/')
@@ -44,10 +46,10 @@ class ListsItem(View):
             print(kwargs)
             form = self.form(instance=instance)
             content = {
-                'pk' : kwargs['pk'],
-                'form' : form,
-                'url' : kwargs['url'],
-                'suburl' : kwargs['suburl']
+                'pk': kwargs['pk'],
+                'form': form,
+                'url': kwargs['url'],
+                'suburl': kwargs['suburl']
             }
             return render(self.request, self.template_form, content)
 
@@ -67,16 +69,26 @@ class ListsItem(View):
 
         if 'search' in request.GET:
             # Поиск по спискам
-            print('search')
-            return HttpResponse('search')
+            q = request.GET['search']
+            if url == 'books':
+                # Книгу ищем по имени, серии, имени и фамилии автора
+                self.template_name = f'{url}_ajax.html'
+                filters = Q(name__icontains=q) | Q(series__icontains=q) | Q(
+                    author__first_name__icontains=q) | Q(author__last_name__icontains=q)
+            elif url == 'authors':
+                # Автора ищим по имени и фамилии
+                self.template_name = f'{url}_ajax.html'
+                filters = Q(first_name__icontains=q) | Q(
+                    last_name__icontains=q)
+            items = self.model.objects.filter(filters)
         else:
             items = self.model.objects.all()
-            content = {
-                'items' : items,
-                'url_list' : url,
-                'suburl' : suburl,
-            }
-            return render(request, self.template_name, content)
+        content = {
+            'items': items,
+            'url_list': url,
+            'suburl': suburl,
+        }
+        return render(request, self.template_name, content)
 
     def post(self, request, url='', suburl='', pk=''):
         # Перенаправляем запросы POST

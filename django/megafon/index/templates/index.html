@@ -27,71 +27,63 @@
             </ul>
         </aside>
     </div>
+    {% block search %}
     <div class="action_panel">
         <form action="" method="get">
             <label for="search">Поиск</label>
-            <input type="search" name="search" id="search" placeholder="Введите название книги или автора">
+            <input type="search" name="search" id="books" onkeyup="window.search(this.value, this.id);" placeholder="Введите название книги или имя, фамилию автора">
         </form>
     </div>
+    {% endblock search %}
     <div class="content">
         {% block title %}
             <h1 class="title">Главная страницы</h1>
-            <div class="books">
-                <ul>
-                    <li class="book">
-                        <a href="#">
-                            <div class="book-img" style="background-image: url('/static/img/images.jpeg')"></div>
-                            <div class="t-book">Книга 1</div>
-                            <ol>
-                                <li>Автор: Автор 1</li>
-                                <li>Серия: Серия 1</li>
-                            </ol>
-                            <div class="description">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, facilis! Vero sunt numquam praesentium voluptatem!
-                            </div>
-                        </a>
-                    </li>
-                    <li class="book">
-                        <a href="#">
-                            <div class="book-img" style="background-image: url('/static/img/images.jpeg')"></div>
-                            <div class="t-book">Книга 2</div>
-                            <ol>
-                                <li>Автор: Автор 1</li>
-                                <li>Серия: Серия 1</li>
-                            </ol>
-                            <div class="description">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae provident asperiores error eveniet molestias aspernatur ducimus obcaecati. Veritatis tempora, repudiandae quidem aut, nam vel eius maiores accusamus facilis quaerat excepturi id sapiente.
-                            </div>
-                        </a>
-                    </li>
-                    <li class="book">
-                        <a href="#">
-                            <div class="book-img" style="background-image: url('/static/img/images.jpeg')"></div>
-                            <div class="t-book">Книга 3</div>
-                            <ol>
-                                <li>Автор: Автор 1</li>
-                                <li>Серия: Серия 1</li>
-                            </ol>
-                            <div class="description">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, facilis! Vero sunt numquam praesentium voluptatem!
-                            </div>
-                        </a>
-                    </li>
-                    <li class="book">
-                        <a href="#">
-                            <div class="book-img" style="background-image: url('/static/img/images.jpeg')"></div>
-                            <div class="t-book">Книга 4</div>
-                            <ol>
-                                <li>Автор: Автор 1</li>
-                                <li>Серия: Серия 1</li>
-                            </ol>
-                            <div class="description">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, facilis! Vero sunt numquam praesentium voluptatem!
-                            </div>
-                        </a>
-                    </li>
-                </ul>
+            <div id="ajax_result">
+                <div class="books">
+                    <h3>Книги</h3>
+                    <ul>
+                        {% for book in books %}
+                        <li class="book">
+                            <a href="/books/edit/{{book.pk}}" data-action='getForm'>
+                                <div class="book-img" style='background-image: url("/{{book.image}}")'></div>
+                                <div class="t-book">{{book.name}}</div>
+                                <ol>
+                                    <li>Авторы: 
+                                        {% for author in book.author.all %}
+                                            <p>{{author}}</p>
+                                        {% endfor %}
+                                    </li>
+                                    <li>Серия: {{book.series}}</li>
+                                </ol>
+                                <div class="description">
+                                    {{book.description}}
+                                </div>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+        
+                <div class="authors">
+                    <h3>Авторы</h3>
+                    <ul>
+                        {% for author in author %}
+                        <li class="author">
+                            <a href="/authors/edit/{{author.pk}}" data-action='getForm'>
+                                <div class="author-img" style='background-image: url("/{{author.image}}")'></div>
+                                <div class="t-author">{{author}}
+                
+                                </div>
+                                <div class="description">
+                                    {{author.description}}
+                                </div>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
+
 
         {% endblock title %}
         {% block content %}
