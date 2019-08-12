@@ -430,7 +430,6 @@ footer {
 .item-add form input {
   padding: 5px;
   margin: 5px;
-  max-width: 200px;
   width: 100%;
   display: block;
   border-radius: 5px;
@@ -447,8 +446,21 @@ footer {
 }
 
 .item-add form textarea {
-  width: 250px;
   margin: 0 auto;
+  padding: 5px;
+}
+
+.item-add form select {
+  padding: 5px;
+  width: 100%;
+  margin: 10px;
+}
+
+.item-add form p {
+  width: 100%;
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .item-add {

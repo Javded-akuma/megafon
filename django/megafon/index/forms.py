@@ -4,14 +4,21 @@ from .models import Author, Books
 
 
 class BookForm(ModelForm):
-    description = forms.CharField( widget=forms.Textarea )
+    description = forms.CharField( widget=forms.TextInput() )
+    # urgent = forms.BooleanField(
+    #     label=_("Срочный заказ"),
+    #     required=False,
+    #     widget=forms.CheckboxInput(),
+    # )
     class Meta:
         model = Books
         fields = "__all__"
 
-        def __init__(self, *args, **kargs):
-            super(BookForm, self).__init__(*args, **kargs)
-            self.fields['author'].label = ''
+    def __init__(self, *args, **kargs):
+        super(BookForm, self).__init__(*args, **kargs)
+        self.fields['author'].label = 'Авторы'
+        self.fields['description'].label = 'Описание'
+        self.fields['image'].label = 'Изображение'
 
 class AuthorForm(ModelForm):
     description = forms.CharField( widget=forms.TextInput() )
@@ -19,5 +26,7 @@ class AuthorForm(ModelForm):
         model = Author
         fields = "__all__"
 
-        def __init__(self, *args, **kargs):
-            super(AuthorForm, self).__init__(*args, **kargs)
+    def __init__(self, *args, **kargs):
+        super(AuthorForm, self).__init__(*args, **kargs)
+        self.fields['description'].label = 'Описание'
+        self.fields['image'].label = 'Изображение'
