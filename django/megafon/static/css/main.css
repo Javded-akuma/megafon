@@ -448,6 +448,7 @@ footer {
 .item-add form textarea {
   margin: 0 auto;
   padding: 5px;
+  height: 50px;
 }
 
 .item-add form select {

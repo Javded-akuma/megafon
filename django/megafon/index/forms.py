@@ -4,29 +4,30 @@ from .models import Author, Books
 
 
 class BookForm(ModelForm):
-    description = forms.CharField( widget=forms.TextInput() )
-    # urgent = forms.BooleanField(
-    #     label=_("Срочный заказ"),
-    #     required=False,
-    #     widget=forms.CheckboxInput(),
-    # )
+    # Переопределяем поле description
+    description = forms.CharField( widget=forms.Textarea )
     class Meta:
+        # Берем все поля из базы
         model = Books
         fields = "__all__"
 
     def __init__(self, *args, **kargs):
         super(BookForm, self).__init__(*args, **kargs)
+        # Изменяем лейблы полей формы
         self.fields['author'].label = 'Авторы'
         self.fields['description'].label = 'Описание'
         self.fields['image'].label = 'Изображение'
 
 class AuthorForm(ModelForm):
-    description = forms.CharField( widget=forms.TextInput() )
+    # Переопределяем поле description
+    description = forms.CharField(widget=forms.Textarea)
     class Meta:
+        # Берем все поля из базы
         model = Author
         fields = "__all__"
 
     def __init__(self, *args, **kargs):
         super(AuthorForm, self).__init__(*args, **kargs)
+        # Изменяем лейблы полей формы
         self.fields['description'].label = 'Описание'
         self.fields['image'].label = 'Изображение'

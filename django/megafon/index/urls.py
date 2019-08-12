@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
     path('', views.MainView.as_view(), name='main'),
-    # path('/', views.MainView.as_view(), name='index'),
+    # Прописываем роуты для наших страниц.
     url(r'^(?P<url>books)/$', views.BookView.as_view(), name='books'),
     url(r'^(?P<url>books)\/(?P<suburl>add)/$', views.BookView.as_view(), name='books_add'),
     url(r'^(?P<url>books)\/(?P<suburl>edit)\/(?P<pk>\d+)', views.BookView.as_view(), name='books_edit'),

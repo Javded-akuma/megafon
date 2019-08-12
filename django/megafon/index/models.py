@@ -5,6 +5,7 @@ from django.utils import timezone
 # Create your models here.
 
 class Author(models.Model):
+    # Модель базы
     first_name = models.CharField(_("Имя автора"), max_length=200)
     last_name = models.CharField(_("Фамилия автора"), max_length=200)
     description = models.CharField(_("Описание автора"), max_length=200, blank=True, null=True)
@@ -15,6 +16,7 @@ class Author(models.Model):
     objects = models.Manager()
 
 class Books(models.Model):
+    # Модель базы
     name = models.CharField(_("Название книги"), max_length=200)
     author = models.ManyToManyField(Author, blank=True)
     description = models.CharField(_("Описание книги"), max_length=2000, blank=True, null=True)
