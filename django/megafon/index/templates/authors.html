@@ -3,5 +3,21 @@
 <h1 class="title">Авторы</h1>
 {% endblock title %}
 {% block content %}
+<div class="authors">
+    <ul>
+        {% for item in items %}
+        <li class="author">
+            <a href="/authors/edit/{{item.pk}}" data-action='getForm'>
+                <div class="author-img" style='background-image: url("/{{item.image}}")'></div>
+                <div class="t-author">{{item}}
 
+                </div>
+                <div class="description">
+                    {{item.description}}
+                </div>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock content %}

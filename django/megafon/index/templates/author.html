@@ -1,0 +1,15 @@
+<div class="item-add">
+    <a href="#" class="close">X</a>
+    <form action="
+    {% if suburl == 'add' %}
+        /authors/add/
+    {% else %}
+        /authors/edit/{{pk}}
+    {% endif %}
+        " method="post" id="add_author" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h3>Новый автор</h3>
+        {{form.as_p}}
+        <button type="submit" for="add_author">отправить</button>
+    </form>
+</div>

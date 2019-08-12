@@ -3,5 +3,27 @@
 <h1 class="title">Книги</h1>
 {% endblock title %}
 {% block content %}
-
+    <div class="books">
+        <ul>
+            {% for item in items %}
+            <li class="book">
+                <a href="/books/edit/{{item.pk}}" data-action='getForm'>
+                    <div class="book-img" style='background-image: url("/{{item.image}}")'></div>
+                    <div class="t-book">{{item.name}}</div>
+                    <ol>
+                        <li>Авторы: 
+                            {% for author in item.author.all %}
+                                <p>{{author}}</p>
+                            {% endfor %}
+                        </li>
+                        <li>Серия: {{item.series}}</li>
+                    </ol>
+                    <div class="description">
+                        {{item.description}}
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock content %}

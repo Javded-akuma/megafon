@@ -124,6 +124,21 @@ img {
   height: auto;
 }
 
+.hidden {
+  display: none;
+}
+
+p {
+  -webkit-margin-before: 0px;
+  margin-block-start: 0px;
+  -webkit-margin-after: 0px;
+  margin-block-end: 0px;
+  -webkit-margin-start: 0px;
+  margin-inline-start: 0px;
+  -webkit-margin-end: 0px;
+  margin-inline-end: 0px;
+}
+
 body {
   display: -webkit-box;
   display: flex;
@@ -152,8 +167,8 @@ body {
   width: 100%;
   display: -webkit-box;
   display: flex;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .header aside ul,
@@ -234,14 +249,9 @@ body {
 
 .action_panel {
   top: 40px;
-  height: 50px;
-  width: 700px;
+  height: 57px;
+  width: 100%;
   background: #4cb955;
-  border: 1px solid #721982;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-  margin: 0 auto;
-  position: absolute;
 }
 
 .action_panel form {
@@ -270,10 +280,10 @@ body {
 }
 
 .content {
-  position: relative;
+  margin: 50px 0px 50px 0px;
   padding: 10px;
-  width: 1200px;
-  top: 60px;
+  max-width: 1200px;
+  width: 100%;
   border: 1px solid #333333;
 }
 
@@ -284,4 +294,168 @@ body {
   text-transform: uppercase;
   padding: 10px;
   border-bottom: 2px solid #721982;
+}
+
+.content .books,
+.content .authors {
+  margin-top: 50px;
+}
+
+.content .books ul,
+.content .authors ul {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.content .books ul li.book,
+.content .authors ul li.book,
+.content .books ul li.author,
+.content .authors ul li.author {
+  max-width: 250px;
+  width: 100%;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 0px 0px 11px -1px #000000;
+}
+
+.content .books ul li.book a,
+.content .authors ul li.book a,
+.content .books ul li.author a,
+.content .authors ul li.author a {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+}
+
+.content .books ul li.book a .book-img,
+.content .authors ul li.book a .book-img,
+.content .books ul li.author a .book-img,
+.content .authors ul li.author a .book-img,
+.content .books ul li.book a .author-img,
+.content .authors ul li.book a .author-img,
+.content .books ul li.author a .author-img,
+.content .authors ul li.author a .author-img {
+  width: 100%;
+  height: 150px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.content .books ul li.book a .t-book,
+.content .authors ul li.book a .t-book,
+.content .books ul li.author a .t-book,
+.content .authors ul li.author a .t-book,
+.content .books ul li.book a .t-author,
+.content .authors ul li.book a .t-author,
+.content .books ul li.author a .t-author,
+.content .authors ul li.author a .t-author {
+  padding: 5px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.content .books ul li.book a .t-author,
+.content .authors ul li.book a .t-author,
+.content .books ul li.author a .t-author,
+.content .authors ul li.author a .t-author {
+  text-align: center;
+}
+
+.content .books ul li.book a .description,
+.content .authors ul li.book a .description,
+.content .books ul li.author a .description,
+.content .authors ul li.author a .description {
+  padding: 5px;
+  text-align: justify;
+}
+
+.content .books ul li.book a ol,
+.content .authors ul li.book a ol,
+.content .books ul li.author a ol,
+.content .authors ul li.author a ol {
+  -webkit-padding-start: 0px;
+  padding-inline-start: 0px;
+  margin: 3px;
+  font-weight: 600;
+}
+
+footer {
+  width: 100%;
+  height: 70px;
+  background: #333333;
+}
+
+.item-add {
+  max-width: 300px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid #333333;
+}
+
+.item-add .close {
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  text-align: right;
+  color: #000;
+}
+
+.item-add h3 {
+  padding: 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.item-add form {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.item-add form input {
+  padding: 5px;
+  margin: 5px;
+  max-width: 200px;
+  width: 100%;
+  display: block;
+  border-radius: 5px;
+  border: 1px solid #333333;
+}
+
+.item-add form button {
+  margin: 5px;
+  padding: 10px;
+  background: #4cb955;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+.item-add form textarea {
+  width: 250px;
+  margin: 0 auto;
+}
+
+.item-add {
+  z-index: 999;
+  position: fixed;
+  left: 38%;
+  top: 0px;
+  background: #fff;
+  box-shadow: 0px 0px 11px -1px #000000;
 }
