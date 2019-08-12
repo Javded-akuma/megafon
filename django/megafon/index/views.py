@@ -14,6 +14,7 @@ class ListsItem(View):
     redirect_url = None
 
     def add(self, *args, instance=None, **kwargs):
+        # Добавление элемента
         if self.request.method == 'POST':
             form = self.form(self.request.POST,  self.request.FILES, instance=instance)
             if form.is_valid():
@@ -32,6 +33,7 @@ class ListsItem(View):
 
 
     def edit(self, *args, **kwargs):
+        # Редактирование элемента при POST запросе
         instance = self.model.objects.get(pk=kwargs['pk'])
         if self.request.method == 'POST':
             form = self.form(self.request.POST, self.request.FILES, instance=instance)
@@ -46,11 +48,14 @@ class ListsItem(View):
                 'form' : form
             }
             return render(self.request, self.template_form, content)
+
+        # Удаление элемента GET
     def delete(self, *args, **kwargs):
         model = self.model
         pass
 
     def get(self, request, url='', suburl='', pk=''):
+        # Перенаправляем запросы GET
         if suburl == 'add':
             return self.add(request, url=url, suburl=suburl, pk=pk)
         if suburl == 'edit':
@@ -59,6 +64,7 @@ class ListsItem(View):
             return self.delete(request, url=url, suburl=suburl, pk=pk)
 
         if 'search' in request.GET:
+            # Поиск по спискам
             print('search')
             return HttpResponse('search')
         else:
@@ -71,6 +77,7 @@ class ListsItem(View):
             return render(request, self.template_name, content)
 
     def post(self, request, url='', suburl='', pk=''):
+        # Перенаправляем запросы POST
         if suburl == 'add':
             return self.add(request, url=url, suburl=suburl, pk=pk)
         if suburl == 'edit':
@@ -81,12 +88,14 @@ class MainView(View):
         return render(request, 'index.html')
 
 class BookView(ListsItem):
+    # Наследуем класс ListsItem для книг
     template_name = 'books.html'
     model = Books
     form = BookForm
     template_form = 'book.html'
 
 class AuthorsView(ListsItem):
+    # Наследуем класс ListsItem для авторов
     template_name = 'authors.html'
     model = Author
     form = AuthorForm
