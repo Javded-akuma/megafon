@@ -4,7 +4,7 @@
   "description": "CRM System",
   "main": "gulpfile.js",
   "dependencies": {
-    "npm": "^6.9.0"
+    "npm": "^6.14.6"
   },
   "devDependencies": {
     "browser-sync": "^2.26.3",
